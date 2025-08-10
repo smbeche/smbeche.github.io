@@ -1,0 +1,332 @@
+/* Hikaru Vision - Simplified Stylesheet for GitHub Pages */
+/* This file contains only the essential styles to ensure compatibility */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 1.1rem;
+    color: #303a4d;
+    line-height: 1.6;
+}
+
+/* Site banner */
+.site-banner {
+    background: #90DB8A;
+    color: #303a4d;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.75rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2.6rem;
+    z-index: 2001;
+}
+
+/* Header */
+.header {
+    background: #fff;
+    padding: 20px;
+    margin-top: 2.6rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.header__logo img {
+    height: 96px;
+    width: auto;
+    display: block;
+}
+
+.header__navigation {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu__list {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.menu__link {
+    text-decoration: none;
+    color: #303a4d;
+    font-weight: 600;
+}
+
+.actions-header__button--whatsapp {
+    background-color: #90DB8A !important;
+    color: #303a4d !important;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    border: none;
+}
+
+/* Main content */
+.main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.main__container {
+    background: rgba(255,255,255,0.9);
+    padding: 40px;
+    margin: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 800px;
+    position: relative;
+    z-index: 3;
+}
+
+.main__caption {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.main__title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.main__text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.main__button {
+    background-color: #90DB8A;
+    color: #303a4d;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+/* Background slideshow */
+.main-bg-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.main-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.main-bg-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.main-bg-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.5);
+    border: none;
+    font-size: 2.5rem;
+    color: #303a4d;
+    cursor: pointer;
+    z-index: 3;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.main-bg-arrow--left {
+    left: 2rem;
+}
+
+.main-bg-arrow--right {
+    right: 2rem;
+}
+
+/* Sections */
+.about, .services, .contact, .testimonial, .outro {
+    padding: 60px 20px;
+}
+
+.about__container, .services__container, .contact__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about__image img, .services__item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Testimonials */
+.testimonial__container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial__slideshow {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.testimonial__slide {
+    display: none;
+}
+
+.testimonial__slide.active {
+    display: block;
+}
+
+.testimonial__text {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.testimonial__icon img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 1rem auto;
+    display: block;
+}
+
+.testimonial__name {
+    font-weight: 600;
+    color: #90DB8A;
+}
+
+.testimonial__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.8);
+    border: none;
+    font-size: 2rem;
+    color: #303a4d;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 50%;
+}
+
+.testimonial__arrow--left {
+    left: -3rem;
+}
+
+.testimonial__arrow--right {
+    right: -3rem;
+}
+
+/* Buttons */
+.button {
+    background-color: #90DB8A;
+    color: #303a4d;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+/* Footer */
+.footer {
+    background: #303a4d;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer__logo img {
+    height: 96px;
+    width: auto;
+    margin: 20px auto;
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main__title {
+        font-size: 2.5rem;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .header__navigation {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .main-bg-arrow {
+        font-size: 2rem;
+        padding: 0.3rem 0.8rem;
+    }
+    
+    .main-bg-arrow--left {
+        left: 1rem;
+    }
+    
+    .main-bg-arrow--right {
+        right: 1rem;
+    }
+} 
