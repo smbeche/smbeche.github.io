@@ -9,55 +9,321 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/style-simple.css" />
   <style>
-    /* Fallback styles in case external CSS fails to load */
-    body {
-      font-family: Arial, sans-serif;
+    /* Comprehensive fallback styles for GitHub Pages compatibility */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      font-size: 1.1rem;
+      color: #303a4d;
+      line-height: 1.6;
       background-color: #f5f5f5;
     }
+    
     .site-banner {
       background-color: #90DB8A;
       color: #303a4d;
       text-align: center;
       padding: 10px;
       font-weight: bold;
+      height: 2.6rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1001;
     }
+    
+    .wrapper {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    
     .header {
       background: white;
       padding: 20px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 2.6rem;
+      position: relative;
+      z-index: 1000;
     }
+    
+    .header__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .header__logo img {
+      height: 96px;
+      width: auto;
+      display: block;
+    }
+    
+    .header__navigation {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .menu__list {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    .menu__link {
+      text-decoration: none;
+      color: #303a4d;
+      font-weight: 600;
+    }
+    
+    .actions-header__button {
+      background-color: #90DB8A !important;
+      color: #303a4d !important;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .page__main {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('img/home/background_placeholder_about_service_contact.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
     .main__container {
-      background: rgba(255,255,255,0.9);
+      background: transparent !important;
+      box-shadow: unset !important;
       padding: 40px;
       margin: 20px;
-      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .main__title {
+      font-size: 3.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.18);
+    }
+    
+    .main__text {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.18);
+    }
+    
+    .contact__container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    
+    .contact__title {
+      font-size: 3.5rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #303a4d;
       text-align: center;
     }
-    .button {
+    
+    .contact__title--small {
+      font-size: 1.625rem !important;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #303a4d;
+      text-align: center;
+    }
+    
+    .contact__text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #666;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .contact__text ol {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact__text li {
+      margin-bottom: 15px;
+    }
+    
+    .connect-contact {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .connect-contact__item {
+      display: flex;
+      align-items: center;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .connect-contact__item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .connect-contant__type {
+      margin-right: 20px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .connect-contant__type img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .connect-contact__label {
+      font-weight: 600;
+      color: #303a4d;
+      font-size: 1.1rem;
+    }
+    
+    .contact__links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .contact__links a {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s;
+    }
+    
+    .contact__links a:hover {
+      transform: scale(1.1);
+    }
+    
+    .contact__links img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .outro__container {
+      background: #f8f9fa;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    
+    .outro__title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #303a4d;
+    }
+    
+    .outro__text {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .outro__button {
       background-color: #90DB8A;
       color: #303a4d;
       padding: 15px 30px;
       text-decoration: none;
       border-radius: 30px;
       display: inline-block;
-      font-weight: bold;
-      margin: 10px;
+      font-weight: 600;
+      transition: all 0.3s;
     }
-    .contact__container {
+    
+    .outro__button:hover {
+      background-color: #7bc86f;
+      transform: translateY(-2px);
+    }
+    
+    .footer {
+      background: #303a4d;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    
+    .footer__container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
     }
-    .connect-contact__item {
-      display: flex;
-      align-items: center;
-      margin: 20px 0;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    .footer__logo img {
+      height: 96px;
+      width: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    
+    .footer__copyright {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .header__container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .menu__list {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .connect-contact {
+        grid-template-columns: 1fr;
+      }
+      
+      .main__title {
+        font-size: 2.5rem;
+      }
+      
+      .contact__title {
+        font-size: 2.5rem;
+      }
+      
+      .contact__title--small {
+        font-size: 1.4rem !important;
+      }
     }
   </style>
 </head>
