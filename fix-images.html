@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Path Test - Hikaru Vision</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        .image-test {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .image-test img {
+            max-width: 300px;
+            height: auto;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+        
+        .path-info {
+            background: #e7f3ff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Path Test - Hikaru Vision</h1>
+    
+    <div class="test-section">
+        <h2>Current Page Information</h2>
+        <div class="path-info">
+            <p><strong>Current URL:</strong> <span id="current-url"></span></p>
+            <p><strong>Base URL:</strong> <span id="base-url"></span></p>
+            <p><strong>Repository:</strong> <span id="repo-info"></span></p>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 1: Relative Paths (Current Method)</h2>
+        <div class="image-test">
+            <h3>Logo: img/Logo.png</h3>
+            <img src="img/Logo.png" alt="Logo" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>About: img/about/about-main.jpeg</h3>
+            <img src="img/about/about-main.jpeg" alt="About" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>Service 1: img/services/service-title1.jpeg</h3>
+            <img src="img/services/service-title1.jpeg" alt="Service 1" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Absolute Paths (Alternative Method)</h2>
+        <div class="image-test">
+            <h3>Logo: /hikaru-vision/img/Logo.png</h3>
+            <img src="/hikaru-vision/img/Logo.png" alt="Logo" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>About: /hikaru-vision/img/about/about-main.jpeg</h3>
+            <img src="/hikaru-vision/img/about/about-main.jpeg" alt="About" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>Service 1: /hikaru-vision/img/services/service-title1.jpeg</h3>
+            <img src="/hikaru-vision/img/services/service-title1.jpeg" alt="Service 1" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Direct GitHub Raw URLs</h2>
+        <div class="image-test">
+            <h3>Logo: Raw GitHub URL</h3>
+            <img src="https://raw.githubusercontent.com/smbeche/hikaru-vision/main/img/Logo.png" alt="Logo" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>About: Raw GitHub URL</h3>
+            <img src="https://raw.githubusercontent.com/smbeche/hikaru-vision/main/img/about/about-main.jpeg" alt="About" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Console Information</h2>
+        <p>Open your browser's Developer Tools (F12) and check:</p>
+        <ul>
+            <li><strong>Console tab:</strong> For error messages</li>
+            <li><strong>Network tab:</strong> To see which image requests are failing</li>
+            <li><strong>Elements tab:</strong> To inspect the image elements</li>
+        </ul>
+    </div>
+
+    <script>
+        function markSuccess(img) {
+            const statusDiv = img.parentNode.querySelector('.status');
+            statusDiv.className = 'status success';
+            statusDiv.textContent = '✅ Loaded successfully';
+            console.log(`✅ Image loaded: ${img.src}`);
+        }
+
+        function markError(img) {
+            const statusDiv = img.parentNode.querySelector('.status');
+            statusDiv.className = 'status error';
+            statusDiv.textContent = '❌ Failed to load';
+            console.error(`❌ Image failed to load: ${img.src}`);
+        }
+
+        // Display current page information
+        window.addEventListener('load', () => {
+            const currentUrl = window.location.href;
+            const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+            const repoInfo = window.location.pathname.split('/')[1] || 'Unknown';
+            
+            document.getElementById('current-url').textContent = currentUrl;
+            document.getElementById('base-url').textContent = baseUrl;
+            document.getElementById('repo-info').textContent = repoInfo;
+            
+            console.log('🔍 Page loaded at:', currentUrl);
+            console.log('📁 Base URL:', baseUrl);
+            console.log('📦 Repository:', repoInfo);
+        });
+    </script>
+</body>
+</html> 

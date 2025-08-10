@@ -576,7 +576,23 @@
       </section>
       <section class="page__about about">
         <div class="about__container">
-          <div class="about__image"><img src="img/about/about-main.jpeg" alt="Photo of optometrist in clinic" /></div>
+          <div class="about__image">
+            <img 
+              src="img/about/about-main.jpeg" 
+              alt="Photo of optometrist in clinic" 
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              onload="this.nextElementSibling.style.display='none';"
+            />
+            <div style="display:none; background:#f0f0f0; padding:20px; text-align:center; border:2px dashed #ccc;">
+              <p><strong>Image failed to load:</strong> img/about/about-main.jpeg</p>
+              <p>This could be due to:</p>
+              <ul style="text-align:left; display:inline-block;">
+                <li>File path is incorrect</li>
+                <li>File doesn't exist on GitHub</li>
+                <li>Case sensitivity issue</li>
+              </ul>
+            </div>
+          </div>
           <div class="about__content">
             <h2 class="about__title title">About me</h2>
             <div class="about__text">
@@ -602,7 +618,15 @@
               <div class="services__item item-services">
                 <a class="item-services__top" href="#">
                   <div class="item-services__image">
-                    <img src="img/services/service-title1.jpeg" alt="Service equipment in clinic" />
+                    <img 
+                      src="img/services/service-title1.jpeg" 
+                      alt="Service equipment in clinic"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                      onload="this.nextElementSibling.style.display='none';"
+                    />
+                    <div style="display:none; background:#f0f0f0; padding:20px; text-align:center; border:2px dashed #ccc;">
+                      <p><strong>Image failed to load:</strong> img/services/service-title1.jpeg</p>
+                    </div>
                   </div>
                   <h3 class="item-services__title">Comprehensive eye checkup</h3>
                 </a>
@@ -615,7 +639,15 @@
               <div class="services__item item-services">
                 <a class="item-services__top" href="#">
                   <div class="item-services__image">
-                    <img src="img/services/service-title2.jpeg" alt="Hand holding eyeglasses near motorcycle" />
+                    <img 
+                      src="img/services/service-title2.jpeg" 
+                      alt="Hand holding eyeglasses near motorcycle"
+                      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                      onload="this.nextElementSibling.style.display='none';"
+                    />
+                    <div style="display:none; background:#f0f0f0; padding:20px; text-align:center; border:2px dashed #ccc;">
+                      <p><strong>Image failed to load:</strong> img/services/service-title2.jpeg</p>
+                    </div>
                   </div>
                   <h3 class="item-services__title">Door-to-door delivery</h3>
                 </a>
@@ -673,6 +705,35 @@
     </footer>
   </div>
   <script src="js/script.js"></script>
+  <script>
+    // Image debugging for GitHub Pages
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('🔍 Starting image debug...');
+      
+      // Check all images
+      const images = document.querySelectorAll('img');
+      images.forEach((img, index) => {
+        console.log(`Image ${index + 1}:`, {
+          src: img.src,
+          alt: img.alt,
+          naturalWidth: img.naturalWidth,
+          naturalHeight: img.naturalHeight
+        });
+        
+        // Test if image loads
+        const testImg = new Image();
+        testImg.onload = function() {
+          console.log(`✅ ${img.src} loads successfully`);
+        };
+        testImg.onerror = function() {
+          console.error(`❌ ${img.src} fails to load`);
+          console.error('Full URL:', img.src);
+          console.error('Relative path:', img.getAttribute('src'));
+        };
+        testImg.src = img.src;
+      });
+    });
+  </script>
 </body>
 
 </html>

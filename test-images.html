@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test - Hikaru Vision</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        .image-test {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .image-test img {
+            max-width: 300px;
+            height: auto;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .loading { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>Image Loading Test - Hikaru Vision</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Logo Images</h2>
+        <div class="image-test">
+            <h3>Main Logo (img/Logo.png)</h3>
+            <img src="img/Logo.png" alt="Main Logo" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: About Page Images</h2>
+        <div class="image-test">
+            <h3>About Main Image (img/about/about-main.jpeg)</h3>
+            <img src="img/about/about-main.jpeg" alt="Photo of optometrist in clinic" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: Services Page Images</h2>
+        <div class="image-test">
+            <h3>Service 1 (img/services/service-title1.jpeg)</h3>
+            <img src="img/services/service-title1.jpeg" alt="Service equipment in clinic" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>Service 2 (img/services/service-title2.jpeg)</h3>
+            <img src="img/services/service-title2.jpeg" alt="Hand holding eyeglasses near motorcycle" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 4: Home Page Images</h2>
+        <div class="image-test">
+            <h3>User Icon (img/home/user.png)</h3>
+            <img src="img/home/user.png" alt="User Icon" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+        
+        <div class="image-test">
+            <h3>Slideshow 1 (img/home/slideshow_1.png)</h3>
+            <img src="img/home/slideshow_1.png" alt="Slideshow 1" onload="markSuccess(this)" onerror="markError(this)">
+            <div class="status loading">Loading...</div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Console Information</h2>
+        <p>Open your browser's Developer Tools (F12) and check the Console tab for detailed error messages.</p>
+        <p>Also check the Network tab to see which image requests are failing.</p>
+    </div>
+
+    <script>
+        function markSuccess(img) {
+            const statusDiv = img.parentNode.querySelector('.status');
+            statusDiv.className = 'status success';
+            statusDiv.textContent = '✅ Loaded successfully';
+            console.log(`✅ Image loaded: ${img.src}`);
+        }
+
+        function markError(img) {
+            const statusDiv = img.parentNode.querySelector('.status');
+            statusDiv.className = 'status error';
+            statusDiv.textContent = '❌ Failed to load';
+            console.error(`❌ Image failed to load: ${img.src}`);
+            
+            // Try to get more error details
+            const testImg = new Image();
+            testImg.onerror = function() {
+                console.error(`Detailed error for: ${img.src}`);
+                console.error('This usually means:');
+                console.error('1. File path is incorrect');
+                console.error('2. File doesn\'t exist');
+                console.error('3. File permissions issue');
+                console.error('4. Case sensitivity issue (GitHub Pages is case-sensitive)');
+            };
+            testImg.src = img.src;
+        }
+
+        // Test all images programmatically
+        window.addEventListener('load', () => {
+            console.log('🔍 Starting image load test...');
+            console.log('📁 Current page URL:', window.location.href);
+            console.log('📁 Base path:', window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/'));
+        });
+    </script>
+</body>
+</html> 
