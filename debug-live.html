@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Website Debug - Hikaru Vision</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f0f0f0; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .debug-section { 
+            background: white; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border: 2px solid #333; 
+            border-radius: 10px;
+        }
+        .status { 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+            font-weight: bold;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        
+        .test-button {
+            background: #90DB8A;
+            color: #303a4d;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: bold;
+        }
+        
+        .test-button:hover {
+            background: #7BC870;
+        }
+        
+        .image-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border: 2px solid #ddd;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        
+        .css-test {
+            background: #90DB8A;
+            color: #303a4d;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .slideshow-test {
+            position: relative;
+            height: 300px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .slide:nth-child(1) { background: #e74c3c; }
+        .slide:nth-child(2) { background: #3498db; }
+        .slide:nth-child(3) { background: #2ecc71; }
+        .slide:nth-child(4) { background: #f39c12; }
+        .slide:nth-child(5) { background: #9b59b6; }
+        .slide:nth-child(6) { background: #1abc9c; }
+        .slide:nth-child(7) { background: #34495e; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Live Website Debug - Hikaru Vision</h1>
+    <p>This page helps diagnose issues with your live website on GitHub Pages.</p>
+    
+    <div class="debug-section">
+        <h2>📊 System Information</h2>
+        <div id="system-info"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🎨 CSS Loading Test</h2>
+        <div id="css-status"></div>
+        <div class="css-test">
+            <h3>CSS Test Element</h3>
+            <p>If you see this styled with green background and centered text, CSS is working!</p>
+        </div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🖼️ Image Loading Test</h2>
+        <div id="image-status"></div>
+        <div id="image-previews"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>⚡ JavaScript Functionality Test</h2>
+        <div id="js-status"></div>
+        <button class="test-button" onclick="testSlideshow()">Test Slideshow</button>
+        <button class="test-button" onclick="testMobileMenu()">Test Mobile Menu</button>
+        <div class="slideshow-test">
+            <div class="slide active">Slide 1</div>
+            <div class="slide">Slide 2</div>
+            <div class="slide">Slide 3</div>
+            <div class="slide">Slide 4</div>
+            <div class="slide">Slide 5</div>
+            <div class="slide">Slide 6</div>
+            <div class="slide">Slide 7</div>
+        </div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>🔗 Navigation Test</h2>
+        <div id="nav-status"></div>
+        <a href="index.html" class="test-button">Home</a>
+        <a href="about.html" class="test-button">About</a>
+        <a href="services.html" class="test-button">Services</a>
+        <a href="contact.html" class="test-button">Contact</a>
+    </div>
+    
+    <div class="debug-section">
+        <h2>📝 Console Log</h2>
+        <div id="console-log"></div>
+        <button class="test-button" onclick="clearLog()">Clear Log</button>
+    </div>
+    
+    <script>
+        // Console logging function
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.getElementById('console-log');
+            const logEntry = document.createElement('div');
+            logEntry.className = `status ${type}`;
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            logDiv.appendChild(logEntry);
+            console.log(`[${timestamp}] ${message}`);
+        }
+        
+        // System information
+        function showSystemInfo() {
+            const infoDiv = document.getElementById('system-info');
+            infoDiv.innerHTML = `
+                <div class="status info">
+                    <strong>User Agent:</strong> ${navigator.userAgent}
+                </div>
+                <div class="status info">
+                    <strong>Screen Resolution:</strong> ${screen.width}x${screen.height}
+                </div>
+                <div class="status info">
+                    <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}
+                </div>
+                <div class="status info">
+                    <strong>Page URL:</strong> ${window.location.href}
+                </div>
+                <div class="status info">
+                    <strong>Protocol:</strong> ${window.location.protocol}
+                </div>
+            `;
+        }
+        
+        // Test CSS loading
+        function testCSS() {
+            const cssFiles = [
+                'css/style-github.css',
+                'css/style.css',
+                'css/reset.css',
+                'css/style-simple.css'
+            ];
+            
+            const statusDiv = document.getElementById('css-status');
+            let results = '';
+            
+            cssFiles.forEach(file => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = file;
+                
+                link.onload = () => {
+                    log(`✅ ${file} loaded successfully`, 'success');
+                    results += `<div class="status success">✅ ${file} loaded successfully</div>`;
+                    statusDiv.innerHTML = results;
+                };
+                
+                link.onerror = () => {
+                    log(`❌ ${file} failed to load`, 'error');
+                    results += `<div class="status error">❌ ${file} failed to load</div>`;
+                    statusDiv.innerHTML = results;
+                };
+                
+                document.head.appendChild(link);
+            });
+        }
+        
+        // Test image loading
+        function testImages() {
+            const images = [
+                'img/Logo.png',
+                'img/home/hero_placeholder.jpg',
+                'img/about/about-main.jpeg',
+                'img/services/service-title1.jpeg',
+                'img/contact/email.svg'
+            ];
+            
+            const statusDiv = document.getElementById('image-status');
+            const previewDiv = document.getElementById('image-previews');
+            let results = '';
+            let previews = '';
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                
+                img.onload = () => {
+                    log(`✅ ${src} loaded successfully`, 'success');
+                    results += `<div class="status success">✅ ${src} loaded successfully</div>`;
+                    previews += `<img src="${src}" alt="Preview" class="image-preview">`;
+                    statusDiv.innerHTML = results;
+                    previewDiv.innerHTML = previews;
+                };
+                
+                img.onerror = () => {
+                    log(`❌ ${src} failed to load`, 'error');
+                    results += `<div class="status error">❌ ${src} failed to load</div>`;
+                    statusDiv.innerHTML = results;
+                };
+            });
+        }
+        
+        // Test JavaScript functionality
+        function testJavaScript() {
+            const statusDiv = document.getElementById('js-status');
+            let results = '';
+            
+            // Test basic JavaScript
+            try {
+                const testElement = document.createElement('div');
+                testElement.innerHTML = 'JavaScript Test';
+                document.body.appendChild(testElement);
+                document.body.removeChild(testElement);
+                results += `<div class="status success">✅ Basic JavaScript functionality working</div>`;
+            } catch (error) {
+                results += `<div class="status error">❌ Basic JavaScript failed: ${error.message}</div>`;
+            }
+            
+            // Test DOM manipulation
+            try {
+                const testDiv = document.createElement('div');
+                testDiv.id = 'test-div';
+                testDiv.className = 'test-class';
+                document.body.appendChild(testDiv);
+                const foundDiv = document.getElementById('test-div');
+                if (foundDiv && foundDiv.className === 'test-class') {
+                    results += `<div class="status success">✅ DOM manipulation working</div>`;
+                } else {
+                    results += `<div class="status error">❌ DOM manipulation failed</div>`;
+                }
+                document.body.removeChild(testDiv);
+            } catch (error) {
+                results += `<div class="status error">❌ DOM manipulation failed: ${error.message}</div>`;
+            }
+            
+            // Test event handling
+            try {
+                let eventTest = false;
+                const testButton = document.createElement('button');
+                testButton.onclick = () => { eventTest = true; };
+                testButton.click();
+                if (eventTest) {
+                    results += `<div class="status success">✅ Event handling working</div>`;
+                } else {
+                    results += `<div class="status error">❌ Event handling failed</div>`;
+                }
+            } catch (error) {
+                results += `<div class="status error">❌ Event handling failed: ${error.message}</div>`;
+            }
+            
+            statusDiv.innerHTML = results;
+        }
+        
+        // Test navigation
+        function testNavigation() {
+            const statusDiv = document.getElementById('nav-status');
+            const pages = ['index.html', 'about.html', 'services.html', 'contact.html'];
+            let results = '';
+            
+            pages.forEach(page => {
+                const link = document.createElement('a');
+                link.href = page;
+                link.innerHTML = `Test ${page}`;
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                
+                if (link.href.includes(page)) {
+                    results += `<div class="status success">✅ ${page} link created successfully</div>`;
+                } else {
+                    results += `<div class="status error">❌ ${page} link creation failed</div>`;
+                }
+                
+                document.body.removeChild(link);
+            });
+            
+            statusDiv.innerHTML = results;
+        }
+        
+        // Test slideshow functionality
+        function testSlideshow() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                });
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+            
+            // Auto-advance slides
+            setInterval(nextSlide, 2000);
+            log('🎠 Slideshow test started - slides should change every 2 seconds', 'info');
+        }
+        
+        // Test mobile menu
+        function testMobileMenu() {
+            log('📱 Mobile menu test - check if menu toggle works', 'info');
+            // This would need the actual menu elements to test properly
+        }
+        
+        // Clear console log
+        function clearLog() {
+            document.getElementById('console-log').innerHTML = '';
+        }
+        
+        // Run all tests when page loads
+        window.addEventListener('load', () => {
+            log('🚀 Debug page loaded, starting tests...', 'info');
+            showSystemInfo();
+            testCSS();
+            testImages();
+            testJavaScript();
+            testNavigation();
+            log('✅ All tests completed. Check results above.', 'success');
+        });
+        
+        // Catch any global errors
+        window.addEventListener('error', (event) => {
+            log(`❌ Global error: ${event.message}`, 'error');
+        });
+        
+        // Catch unhandled promise rejections
+        window.addEventListener('unhandledrejection', (event) => {
+            log(`❌ Unhandled promise rejection: ${event.reason}`, 'error');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f0f0f0; 
+        }
+        .test-box { 
+            background: white; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border: 2px solid #333; 
+        }
+        .css-status { 
+            padding: 10px; 
+            margin: 10px 0; 
+            border-radius: 5px; 
+        }
+        .css-loaded { background: #d4edda; color: #155724; }
+        .css-failed { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>CSS Loading Test</h1>
+    
+    <div class="test-box">
+        <h2>Test 1: Inline CSS</h2>
+        <p>This text should be styled with inline CSS.</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Test 2: External CSS Files</h2>
+        <div id="css-status"></div>
+        <p>Check the console for detailed CSS loading information.</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>Test 3: Image Loading</h2>
+        <div id="image-status"></div>
+        <p>Check the console for detailed image loading information.</p>
+    </div>
+    
+    <script>
+        // Test CSS loading
+        function testCSS() {
+            const cssFiles = [
+                'css/style.css',
+                'css/reset.css',
+                'css/style-simple.css'
+            ];
+            
+            const statusDiv = document.getElementById('css-status');
+            let results = '';
+            
+            cssFiles.forEach(file => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = file;
+                
+                link.onload = () => {
+                    console.log(`✅ ${file} loaded successfully`);
+                    results += `<div class="css-status css-loaded">✅ ${file} loaded successfully</div>`;
+                    statusDiv.innerHTML = results;
+                };
+                
+                link.onerror = () => {
+                    console.error(`❌ ${file} failed to load`);
+                    results += `<div class="css-status css-failed">❌ ${file} failed to load</div>`;
+                    statusDiv.innerHTML = results;
+                };
+                
+                document.head.appendChild(link);
+            });
+        }
+        
+        // Test image loading
+        function testImages() {
+            const images = [
+                'img/Logo.png',
+                'img/home/hero_placeholder.jpg',
+                'img/about/about-main.jpeg'
+            ];
+            
+            const statusDiv = document.getElementById('image-status');
+            let results = '';
+            
+            images.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                
+                img.onload = () => {
+                    console.log(`✅ ${src} loaded successfully`);
+                    results += `<div class="css-status css-loaded">✅ ${src} loaded successfully</div>`;
+                    statusDiv.innerHTML = results;
+                };
+                
+                img.onerror = () => {
+                    console.error(`❌ ${src} failed to load`);
+                    results += `<div class="css-status css-failed">❌ ${src} failed to load</div>`;
+                    statusDiv.innerHTML = results;
+                };
+            });
+        }
+        
+        // Run tests when page loads
+        window.addEventListener('load', () => {
+            console.log('Starting CSS and image tests...');
+            testCSS();
+            testImages();
+        });
+    </script>
+</body>
+</html> 

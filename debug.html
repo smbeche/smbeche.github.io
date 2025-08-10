@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Debug - Hikaru Vision</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        .test-box {
+            width: 200px;
+            height: 100px;
+            background: linear-gradient(45deg, #90DB8A, #303a4d);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .css-test {
+            background-color: #90DB8A;
+            color: #303a4d;
+            padding: 15px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 CSS Debug - Hikaru Vision</h1>
+    
+    <div class="debug-section">
+        <h2>CSS Loading Status</h2>
+        <div id="css-status" class="status info">Checking CSS files...</div>
+        
+        <h3>External CSS Files:</h3>
+        <ul>
+            <li><strong>style.css:</strong> <span id="style-status">Checking...</span></li>
+            <li><strong>style-simple.css:</strong> <span id="simple-status">Checking...</span></li>
+            <li><strong>reset.css:</strong> <span id="reset-status">Checking...</span></li>
+        </ul>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Image Loading Status</h2>
+        <div id="image-status" class="status info">Checking images...</div>
+        
+        <h3>Key Images:</h3>
+        <ul>
+            <li><strong>Logo.png:</strong> <span id="logo-status">Checking...</span></li>
+            <li><strong>background_placeholder_about_service_contact.png:</strong> <span id="bg-status">Checking...</span></li>
+            <li><strong>slideshow_1.png:</strong> <span id="slide1-status">Checking...</span></li>
+        </ul>
+    </div>
+    
+    <div class="debug-section">
+        <h2>CSS Functionality Test</h2>
+        <p>If you see styled elements below, CSS is working:</p>
+        
+        <div class="test-box">
+            Gradient Box
+        </div>
+        
+        <div class="css-test">
+            WhatsApp Button Style
+        </div>
+        
+        <p><strong>Expected:</strong> Green gradient box and green button with dark text</p>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Console Output</h2>
+        <p>Check your browser's console (F12) for any error messages.</p>
+        <div id="console-output" style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; max-height: 200px; overflow-y: auto;">
+            Console output will appear here...
+        </div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Quick Fixes to Try</h2>
+        <ol>
+            <li><strong>Hard refresh:</strong> Ctrl+F5 (Windows) or Cmd+Shift+R (Mac)</li>
+            <li><strong>Clear browser cache</strong> for this site</li>
+            <li><strong>Check file paths:</strong> Ensure all files are in the correct folders</li>
+            <li><strong>Case sensitivity:</strong> GitHub Pages is case-sensitive</li>
+        </ol>
+    </div>
+
+    <script>
+        // Debug CSS loading
+        function checkCSSFile(filename, statusElement) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = filename;
+            
+            link.onload = function() {
+                statusElement.textContent = '✅ Loaded successfully';
+                statusElement.style.color = '#155724';
+                statusElement.style.backgroundColor = '#d4edda';
+            };
+            
+            link.onerror = function() {
+                statusElement.textContent = '❌ Failed to load';
+                statusElement.style.color = '#721c24';
+                statusElement.style.backgroundColor = '#f8d7da';
+            };
+            
+            document.head.appendChild(link);
+        }
+        
+        // Debug image loading
+        function checkImage(filename, statusElement) {
+            const img = new Image();
+            img.onload = function() {
+                statusElement.textContent = '✅ Loaded successfully';
+                statusElement.style.color = '#155724';
+                statusElement.style.backgroundColor = '#d4edda';
+            };
+            img.onerror = function() {
+                statusElement.textContent = '❌ Failed to load';
+                statusElement.style.color = '#721c24';
+                statusElement.style.backgroundColor = '#f8d7da';
+            };
+            img.src = filename;
+        }
+        
+        // Check CSS files
+        checkCSSFile('css/style.css', document.getElementById('style-status'));
+        checkCSSFile('css/style-simple.css', document.getElementById('simple-status'));
+        checkCSSFile('css/reset.css', document.getElementById('reset-status'));
+        
+        // Check images
+        checkImage('img/Logo.png', document.getElementById('logo-status'));
+        checkImage('img/home/background_placeholder_about_service_contact.png', document.getElementById('bg-status'));
+        checkImage('img/home/slideshow_1.png', document.getElementById('slide1-status'));
+        
+        // Console logging
+        console.log('🔍 Hikaru Vision Debug Page Loaded');
+        console.log('📁 Current URL:', window.location.href);
+        console.log('🌐 Protocol:', window.location.protocol);
+        console.log('📂 Pathname:', window.location.pathname);
+        
+        // Check if we're on GitHub Pages
+        if (window.location.hostname.includes('github.io')) {
+            console.log('✅ Running on GitHub Pages');
+        } else {
+            console.log('ℹ️ Running locally or on different host');
+        }
+        
+        // Update status
+        setTimeout(() => {
+            document.getElementById('css-status').textContent = 'CSS check completed';
+            document.getElementById('css-status').className = 'status success';
+            
+            document.getElementById('image-status').textContent = 'Image check completed';
+            document.getElementById('image-status').className = 'status success';
+        }, 3000);
+    </script>
+</body>
+</html> 

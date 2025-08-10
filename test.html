@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Test - Hikaru Vision</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Test styles to verify CSS loading */
+        .test-box {
+            background: #90DB8A;
+            color: #303a4d;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-box">
+        <h1>CSS Test Page</h1>
+        <p>If you can see this styled box, the CSS is working!</p>
+        <p>If you only see plain text, there's a CSS loading issue.</p>
+    </div>
+    
+    <div class="test-box">
+        <h2>External CSS Test</h2>
+        <p>This text should be styled by the external CSS file.</p>
+        <p>Font family should be Inter, and color should be #303a4d</p>
+    </div>
+    
+    <script src="js/script.js"></script>
+    <script>
+        console.log('Test page loaded');
+        // Check if external CSS is loaded
+        const externalStyles = document.styleSheets;
+        console.log('Number of stylesheets:', externalStyles.length);
+        for (let i = 0; i < externalStyles.length; i++) {
+            console.log('Stylesheet', i, ':', externalStyles[i].href);
+        }
+    </script>
+</body>
+</html> 
