@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <title>CONTACT</title>
-  <link rel="stylesheet" href="css/style-github.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/style-simple.css" />
+  <link rel="stylesheet" href="style-github.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style-simple.css" />
   <style>
     /* Comprehensive fallback styles for GitHub Pages compatibility */
     * {
@@ -105,7 +105,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-image: url('img/home/background_placeholder_about_service_contact.png');
+      background-image: url('background_placeholder_about_service_contact.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -174,68 +174,55 @@
       margin-bottom: 15px;
     }
     
-    .connect-contact {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-    
-    .connect-contact__item {
-      display: flex;
-      align-items: center;
-      padding: 30px;
+    .contact__box {
       background: white;
+      border: 2px solid #e0e0e0;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    
-    .connect-contact__item:hover {
-      transform: translateY(-5px);
-    }
-    
-    .connect-contant__type {
-      margin-right: 20px;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .connect-contant__type img {
-      width: 100%;
-      height: auto;
-    }
-    
-    .connect-contact__label {
-      font-weight: 600;
-      color: #303a4d;
-      font-size: 1.1rem;
-    }
-    
-    .contact__links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+      padding: 40px;
       margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
     
-    .contact__links a {
+    .contact__info-item {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #303a4d;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .contact__info-item:last-of-type {
+      border-bottom: none;
+      margin-bottom: 30px;
+    }
+    
+    .contact__whatsapp {
+      margin-top: 20px;
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+    
+    .whatsapp-link {
+      background-color: #90DB8A;
+      color: #303a4d;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
       display: inline-block;
-      width: 50px;
-      height: 50px;
-      transition: transform 0.3s;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(144, 219, 138, 0.3);
     }
     
-    .contact__links a:hover {
-      transform: scale(1.1);
-    }
-    
-    .contact__links img {
-      width: 100%;
-      height: auto;
+    .whatsapp-link:hover {
+      background-color: #7bc86f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(144, 219, 138, 0.4);
     }
     
     .outro__container {
@@ -310,8 +297,10 @@
         text-align: center;
       }
       
-      .connect-contact {
-        grid-template-columns: 1fr;
+      .contact__box {
+        margin: 20px;
+        padding: 25px;
+        max-width: 90%;
       }
       
       .main__title {
@@ -334,7 +323,7 @@
   <div class="wrapper">
     <header class="header">
       <div class="header__container">
-        <a href="index.html" class="header__logo logo"><img src="img/Logo.png" alt="Logo" style="height: 96px; width: auto; display: block;" /></a>
+        <a href="index.html" class="header__logo logo"><img src="Logo.png" alt="Logo" style="height: 96px; width: auto; display: block;" /></a>
         <div class="header__navigation">
           <div class="header__menu menu">
             <nav class="menu__body">
@@ -367,28 +356,16 @@
         <div class="contact__container">
           <div class="contact__contacts">
             <h2 class="contact__title">You can find us at</h2>
-            <div class="contact__connect connect-contact">
-              <a type="tel:+2540786095889" href="tel:+2540786095889" class="connect-contact__item">
-                <div class="connect-contact__icon"><img src="img/contact/phone.svg" alt="ico" /></div>
-                <div class="connect-contact__content">
-                  <h3 class="connect-contant__type">Phone</h3>
-                  <div class="connect-contact__label">+254 0786095889 / Click <a href="https://wa.me/254786095889" target="_blank" style="text-decoration:underline;">here</a> to chat via WhatsApp</div>
-                  
-                
-                </div>
-              </a>
-              <a type="mailto:email@website.com" href="#" class="connect-contact__item">
-                <div class="connect-contact__icon"><img src="img/contact/email.svg" alt="ico" /></div>
-                <div class="connect-contact__content">
-                  <h3 class="connect-contant__type">Email</h3>
-                  <div class="connect-contact__label">mbechesamuel@gmail.com</div>
-                </div>
-              </a>
-            </div>
-            <div class="contact__links">
-              <a href="#" class="contact__link"><img src="img/contact/fb.svg" alt="icon" /></a>
-              <a href="#" class="contact__link"><img src="img/contact/ig.svg" alt="icon" /></a>
-              <a href="https://www.linkedin.com/in/samuel-mbeche-829050190/" class="contact__link"><img src="img/contact/in.svg" alt="icon" /></a>
+            <div class="contact__box">
+              <div class="contact__info-item">
+                <strong>Phone:</strong> +254 0786095889
+              </div>
+              <div class="contact__info-item">
+                <strong>Email:</strong> mbechesamuel@gmail.com
+              </div>
+              <div class="contact__whatsapp">
+                <a href="https://wa.me/254786095889" target="_blank" class="whatsapp-link">Click here to chat via WhatsApp</a>
+              </div>
             </div>
           </div>
           <div class="contact__info">
@@ -398,13 +375,13 @@
                 Here’s what happens after you reach out:
               </p>
               <ol style="margin-left: 1.2em;">
-                <li>1. We contact you via WhatsApp or phone to understand your needs (approx. 2 days)</li>
-                <li>2. We schedule your eye check-up (approx. 2 days)</li>
-                <li>3. We visit you for frame fitting (approx. 2 days)</li>
-                <li>4. We deliver your custom eyewear to your home (approx. 2 days)</li>
+                <li>We contact you via WhatsApp or phone to understand your needs (approx. 2 days)</li>
+                <li>We schedule your eye check-up (approx. 2 days)</li>
+                <li>We visit you for frame fitting (approx. 2 days)</li>
+                <li>We deliver your custom eyewear to your home (approx. 2 days)</li>
               </ol>
               <p>
-                Have any questions? We’re happy to help — just get in touch.
+                <strong>Have any questions? We're happy to help — just get in touch.</strong>
               </p>
             </div>
           </div>
@@ -423,12 +400,12 @@
     <footer class="footer">
       <div class="footer__container">
         <a href="#" class="footer__policy">Privacy Policy – Terms & Conditions</a>
-        <a href="" class="footer__logo logo"><img src="img/Logo.png" alt="Logo" style="height: 96px; width: auto; display: block;" /></a>
+        <a href="" class="footer__logo logo"><img src="Logo.png" alt="Logo" style="height: 96px; width: auto; display: block;" /></a>
         <div class="footer__copyright">Copyright © 2025 LOGO – All Rights Reserved</div>
       </div>
     </footer>
   </div>
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
