@@ -155,6 +155,7 @@
     
     .about__image {
       text-align: center;
+      align-self: start;
     }
     
     .about__image img {
@@ -164,17 +165,25 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     
+    .about__text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
     .about__title {
       font-size: 3.5rem;
       font-weight: 600;
       margin-bottom: 30px;
       color: #303a4d;
+      text-align: left;
     }
     
     .about__text {
       font-size: 1.2rem;
       line-height: 1.8;
       margin-bottom: 30px;
+      text-align: left;
     }
     
     .about__text b {
@@ -320,25 +329,27 @@
       </section>
       <section class="page__about about">
         <div class="about__container">
-          <div class="about__image"><img src="about-main.jpeg" alt="Photo of optometrist in clinic" /></div>
           <div class="about__content">
-            <h2 class="about__title title">About me</h2>
-            <div class="about__text">
-              <p>
-                My name is <b>Samuel Mbeche</b>, a licensed <b>optometrist</b> with <b>over 5 years</b> of hands-on experience in Kenya’s leading optical and eyewear companies. I’m also an ardent <b>eyecare ambassador</b>, passionate about making quality vision care accessible to everyone.
-              </p>
-              <p>
-                Over the years, I’ve seen too many people walk away from much-needed eyewear simply because they couldn’t afford it or lacked insurance coverage. That’s why I founded this <b>online mobile optical shop</b> — to bridge the gap between affordability and quality, and bring <b>customized, stylish, and functional eyewear</b> directly to you.
-              </p>
-              <p>
-                We offer <b>bespoke eyewear solutions</b>, tailored to your prescription, style, and comfort needs — including <b>blue light filters, photochromatic lenses, anti-glare coatings, and progressive lenses, all paired with durable, fashionable frames</b>.
-              </p>
-              <p>
-                Whether you’re a student, a professional, or someone simply in need of visual clarity, this platform is built for you — no middlemen, no inflated costs, just <b>accessible eyecare with uncompromised quality.</b>
-              </p>
-              <p>
-                Welcome to a new way of seeing.
-              </p>
+            <div class="about__image"><img src="about-main.jpeg" alt="Photo of optometrist in clinic" /></div>
+            <div class="about__text-content">
+              <h2 class="about__title title">About me</h2>
+              <div class="about__text">
+                <p>
+                  My name is <b>Samuel Mbeche</b>, a licensed <b>optometrist</b> with <b>over 5 years</b> of hands-on experience in Kenya's leading optical and eyewear companies. I'm also an ardent <b>eyecare ambassador</b>, passionate about making quality vision care accessible to everyone.
+                </p>
+                <p>
+                  Over the years, I've seen too many people walk away from much-needed eyewear simply because they couldn't afford it or lacked insurance coverage. That's why I founded this <b>online mobile optical shop</b> — to bridge the gap between affordability and quality, and bring <b>customized, stylish, and functional eyewear</b> directly to you.
+                </p>
+                <p>
+                  We offer <b>bespoke eyewear solutions</b>, tailored to your prescription, style, and comfort needs — including <b>blue light filters, photochromatic lenses, anti-glare coatings, and progressive lenses, all paired with durable, fashionable frames</b>.
+                </p>
+                <p>
+                  Whether you're a student, a professional, or someone simply in need of visual clarity, this platform is built for you — no middlemen, no inflated costs, just <b>accessible eyecare with uncompromised quality.</b>
+                </p>
+                <p>
+                  Welcome to a new way of seeing.
+                </p>
+              </div>
             </div>
           </div>
         </div>

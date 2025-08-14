@@ -235,6 +235,7 @@
     
     .about__image {
       text-align: center;
+      align-self: start;
     }
     
     .about__image img {
@@ -262,6 +263,12 @@
     .about__text b {
       font-weight: 700;
       color: #303a4d;
+    }
+    
+    .about__text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
     }
     
     .about__button {
@@ -587,37 +594,39 @@
       </section>
       <section class="page__about about">
         <div class="about__container">
-          <div class="about__image">
-            <img 
-              src="about-main.jpeg" 
-              alt="Photo of optometrist in clinic" 
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-              onload="this.nextElementSibling.style.display='none';"
-            />
-            <div style="display:none; background:#f0f0f0; padding:20px; text-align:center; border:2px dashed #ccc;">
-              <p><strong>Image failed to load:</strong> about-main.jpeg</p>
-              <p>This could be due to:</p>
-              <ul style="text-align:left; display:inline-block;">
-                <li>File path is incorrect</li>
-                <li>File doesn't exist on GitHub</li>
-                <li>Case sensitivity issue</li>
-              </ul>
-            </div>
-          </div>
           <div class="about__content">
-            <h2 class="about__title title">About me</h2>
-            <div class="about__text">
-              <p>
-                My name is <b>Samuel Mbeche</b>, <b>a licensed optometrist with over 5 years of hands-on experience</b> in Kenya’s leading optical and eyewear companies. I’m also an ardent eyecare ambassador, passionate about making quality vision care accessible to everyone.
-              </p>
-              <p>
-                Whether you’re a student, a professional, or someone simply in need of visual clarity, this platform is built for you — no middlemen, no inflated costs, <b>just accessible eyecare with uncompromised quality</b>.
-              </p>
-              <p>
-                Welcome to a new way of seeing.
-              </p>
+            <div class="about__image">
+              <img 
+                src="about-main.jpeg" 
+                alt="Photo of optometrist in clinic" 
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                onload="this.nextElementSibling.style.display='none';"
+              />
+              <div style="display:none; background:#f0f0f0; padding:20px; text-align:center; border:2px dashed #ccc;">
+                <p><strong>Image failed to load:</strong> about-main.jpeg</p>
+                <p>This could be due to:</p>
+                <ul style="text-align:left; display:inline-block;">
+                  <li>File path is incorrect</li>
+                  <li>File doesn't exist on GitHub</li>
+                  <li>Case sensitivity issue</li>
+                </ul>
+              </div>
             </div>
-            <a href="about.html" class="about__button button">Learn more</a>
+            <div class="about__text-content">
+              <h2 class="about__title title">About me</h2>
+              <div class="about__text">
+                <p>
+                  My name is <b>Samuel Mbeche</b>, <b>a licensed optometrist with over 5 years of hands-on experience</b> in Kenya's leading optical and eyewear companies. I'm also an ardent eyecare ambassador, passionate about making quality vision care accessible to everyone.
+                </p>
+                <p>
+                  Whether you're a student, a professional, or someone simply in need of visual clarity, this platform is built for you — no middlemen, no inflated costs, <b>just accessible eyecare with uncompromised quality</b>.
+                </p>
+                <p>
+                  Welcome to a new way of seeing.
+                </p>
+              </div>
+              <a href="about.html" class="about__button button">Learn more</a>
+            </div>
           </div>
         </div>
       </section>
