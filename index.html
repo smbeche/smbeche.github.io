@@ -226,8 +226,14 @@
       padding: 60px 20px;
     }
     
+    .about__content {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      gap: 40px;
+      align-items: start;
+    }
+    
     .about__image {
-      margin-bottom: 40px;
       text-align: center;
     }
     
@@ -243,14 +249,14 @@
       font-weight: 600;
       margin-bottom: 30px;
       color: #303a4d;
-      text-align: center;
+      text-align: left;
     }
     
     .about__text {
       font-size: 1.2rem;
       line-height: 1.8;
       margin-bottom: 30px;
-      text-align: center;
+      text-align: left;
     }
     
     .about__text b {
@@ -267,7 +273,7 @@
       display: inline-block;
       font-weight: 600;
       transition: all 0.3s;
-      text-align: center;
+      text-align: left;
     }
     
     .about__button:hover {
@@ -506,6 +512,11 @@
       
       .services__row {
         grid-template-columns: 1fr;
+      }
+      
+      .about__content {
+        grid-template-columns: 1fr;
+        gap: 15px;
       }
       
       .main__title {
